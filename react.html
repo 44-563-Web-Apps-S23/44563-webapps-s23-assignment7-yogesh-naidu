@@ -10,41 +10,50 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-  <h1>Yogesh Naidu Mahareddy speed check</h1>
-  <div id="target">Your time</div>
-  <div id="counter">Count</div>
-  <div>
-    <input type="button" class="btn btn-primary" onclick="startTime()" value="Start Timer">
-    <input type="button" class="btn btn-primary" onclick="recordTime()" value="React">
-  </div>
-  <script>
-    var reactTime = undefined
-    function recordTime(){
-      reactTime = Date.now()
-      console.log(reactTime)
-    }
-    function startTime(){
-      for(let i=0;i<9;i++){
-        setTimeout(
-          function(){
-            console.log(i)
-            document.getElementById("counter").innerHTML = i
-          },(8 - i) * 1000
-        )
+    <h2>Yogesh Naidu Mahareddy speed check</h2>
+
+    <div class="container border bg-danger" style="padding-top: 10px; color: rgb(27, 12, 247);">
+      <p id="target">Your Time</p>
+    </div>
+    <div class="container border bg-info" style="padding-top: 10px; color: white;">
+      <p id="counter">Count</p>
+    </div>
+    <br>
+
+    <div class="container">
+      <button type="button" class="btn btn-primary" onclick="startTime()">Start Timer</button>
+      <button type="button" class="btn btn-info" onclick="recordTime()">React</button>
+      <button type="button" class="btn btn-secondary" onclick="randomStart()">Random Start</button> 
+    </div>
+    
+    
+    <script> 
+      var reactTime = undefined
+      var startCount=8
+      function recordTime(){
+          reactTime = Date.now()
+          console.log(reactTime)
       }
-      setTimeout(
-        function(){
-          if(reactTime == undefined){
-            document.getElementById("target").innerHTML = "Too Slow"
+      
+      function startTime(){
+          for(let i=0;i<=startCount;i++){
+              setTimeout(() => {
+                  document.getElementById('counter').innerHTML = "Count: "+i
+              }, (startCount-i)*1000)
+          }
+          setTimeout(()=>{
+          if(reactTime==undefined){
+              document.getElementById('target').innerHTML="Too Slow"
           }
           else{
-            let endTime = Date.now()
-            document.getElementById("target").innerHTML = "Time was "+(endTime-reactTime)
+              endTime = Date.now()
+              document.getElementById('target').innerHTML = "Time was "+(endTime-reactTime)
           }
-        },8000
-      )
-    }
-  </script>
+          },startCount*1000)
+      }
+      
+    </script>
+  
 
 </body>
-</html> 
+</html>
