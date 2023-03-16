@@ -92,6 +92,22 @@
             container_div.insertBefore(remove_item, container_div.firstChild)
         }
     }
+    function promote() {
+        const queueItems = document.querySelectorAll(".delayQ");
+        const randomIndex = Math.floor(Math.random() * queueItems.length);
+        console.log(randomIndex);
+
+        const element = document.createElement("div");
+        element.innerHTML = queueItems[randomIndex].innerHTML;
+        element.style.color = "green";
+        element.classList.add("delayQ");
+
+        const container = document.getElementById("target");
+        const nextSibling = queueItems[randomIndex].nextSibling;
+        container.insertBefore(element, nextSibling);
+        queueItems[randomIndex].remove();
+    }
+
 </script>
 
 </html>
